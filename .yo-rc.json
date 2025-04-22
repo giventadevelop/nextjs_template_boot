@@ -1,0 +1,20 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 0,
+    "applicationType": "monolith",
+    "baseName": "nextjs_template_boot",
+    "devDatabaseType": "postgresql",
+    "enableSwaggerCodegen": true,
+    "entities": [],
+    "jhipsterVersion": "8.0.0",
+    "jwtSecretKey": "ZjYxNDM3YjkzNzIwNWQ3YTI5ZDU2MWI1NjAzYTQ3M2U4YTk4NGM4MmNkZGExZWQ3MmE3NTkyNzJjODNjYTg1YmMyYmNiNzdhZWQ3MTU0ZGIyZGRkMDgxMDE3ZWM5ZWM0ZjViNzVhNmNiM2I0OTJhZGU3ZmY1NWRlZWVjMTM4MjY=",
+    "languages": ["en"],
+    "nativeLanguage": "en",
+    "packageFolder": "com/nextjstemplate",
+    "packageName": "com.nextjstemplate",
+    "prodDatabaseType": "postgresql",
+    "serverPort": "8080",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
