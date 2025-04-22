@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20250422200156",
+  "dto": "mapstruct",
+  "entityTableName": "processed_stripe_event",
+  "fields": [
+    {
+      "fieldName": "eventId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "processedAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ProcessedStripeEvent",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

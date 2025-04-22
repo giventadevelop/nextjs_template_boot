@@ -1,33 +1,29 @@
 package com.nextjstemplate.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import org.springdoc.core.models.GroupedOpenApi;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import tech.jhipster.config.JHipsterConstants;
-import tech.jhipster.config.JHipsterProperties;
-import tech.jhipster.config.apidoc.customizer.JHipsterOpenApiCustomizer;
 
 @Configuration
-@Profile(JHipsterConstants.SPRING_PROFILE_API_DOCS)
 public class OpenApiConfiguration {
 
-    public static final String API_FIRST_PACKAGE = "com.nextjstemplate.web.api";
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI()
+            .info(
+                new Info()
+                    .title("Nextjs Template Boot API")
+                    .description("API Documentation for all REST endpoints")
+                    .version("1.0")
+                    .license(new License().name("Unlicensed"))
+            );
+    }
 
     @Bean
-    @ConditionalOnMissingBean(name = "apiFirstGroupedOpenAPI")
-    public GroupedOpenApi apiFirstGroupedOpenAPI(
-        JHipsterOpenApiCustomizer jhipsterOpenApiCustomizer,
-        JHipsterProperties jHipsterProperties
-    ) {
-        JHipsterProperties.ApiDocs properties = jHipsterProperties.getApiDocs();
-        return GroupedOpenApi
-            .builder()
-            .group("openapi")
-            .addOpenApiCustomizer(jhipsterOpenApiCustomizer)
-            .packagesToScan(API_FIRST_PACKAGE)
-            .pathsToMatch(properties.getDefaultIncludePattern())
-            .build();
+    public GroupedOpenApi allApi() {
+        return GroupedOpenApi.builder().group("all-apis").packagesToScan("com.nextjstemplate.web.rest").pathsToMatch("/**").build();
     }
 }

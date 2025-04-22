@@ -43,6 +43,11 @@ public class CacheConfiguration {
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
+            createCache(cm, com.nextjstemplate.domain.UserProfile.class.getName());
+            createCache(cm, com.nextjstemplate.domain.UserSubscription.class.getName());
+            createCache(cm, com.nextjstemplate.domain.UserTask.class.getName());
+            createCache(cm, com.nextjstemplate.domain.ProcessedStripeEvent.class.getName());
+            createCache(cm, com.nextjstemplate.domain.TicketTransaction.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,10 +1,8 @@
 package com.nextjstemplate.security.jwt;
 
 import com.nextjstemplate.config.SecurityConfiguration;
-import com.nextjstemplate.config.SecurityJwtConfiguration;
 import com.nextjstemplate.config.WebConfigurer;
 import com.nextjstemplate.management.SecurityMetersService;
-import com.nextjstemplate.web.rest.AuthenticateController;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -24,9 +22,9 @@ import tech.jhipster.config.JHipsterProperties;
         JHipsterProperties.class,
         WebConfigurer.class,
         SecurityConfiguration.class,
-        SecurityJwtConfiguration.class,
+        TestSecurityJwtConfiguration.class,
         SecurityMetersService.class,
-        AuthenticateController.class,
+        TestAuthenticateController.class,
         JwtAuthenticationTestUtils.class,
     }
 )

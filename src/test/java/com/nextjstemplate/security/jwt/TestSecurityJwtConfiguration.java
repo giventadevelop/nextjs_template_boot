@@ -1,4 +1,4 @@
-package com.nextjstemplate.config;
+package com.nextjstemplate.security.jwt;
 
 import static com.nextjstemplate.security.SecurityUtils.AUTHORITIES_KEY;
 import static com.nextjstemplate.security.SecurityUtils.JWT_ALGORITHM;
@@ -19,7 +19,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 
 @Configuration
-public class SecurityJwtConfiguration {
+public class TestSecurityJwtConfiguration {
 
     @Value("${jhipster.security.authentication.jwt.base64-secret}")
     private String jwtKey;

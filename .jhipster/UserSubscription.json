@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20250422195956",
+  "dto": "mapstruct",
+  "entityTableName": "user_subscription",
+  "fields": [
+    {
+      "fieldName": "stripeCustomerId",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "stripeSubscriptionId",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "stripePriceId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "stripeCurrentPeriodEnd",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "UserSubscription",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "userProfile",
+      "otherEntityRelationshipName": "userSubscription",
+      "relationshipName": "userProfile",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
