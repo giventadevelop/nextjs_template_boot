@@ -63,4 +63,12 @@ public interface UserProfileService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * Get the userProfile by user ID.
+     *
+     * @param userId the user id to search for.
+     * @return the entity.
+     */
+    Optional<UserProfileDTO> findByUserId(String userId);
 }

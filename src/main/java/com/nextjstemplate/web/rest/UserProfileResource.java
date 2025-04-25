@@ -60,7 +60,9 @@ public class UserProfileResource {
      * {@code POST  /user-profiles} : Create a new userProfile.
      *
      * @param userProfileDTO the userProfileDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new userProfileDTO, or with status {@code 400 (Bad Request)} if the userProfile has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new userProfileDTO, or with status {@code 400 (Bad Request)}
+     *         if the userProfile has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("")
@@ -79,11 +81,14 @@ public class UserProfileResource {
     /**
      * {@code PUT  /user-profiles/:id} : Updates an existing userProfile.
      *
-     * @param id the id of the userProfileDTO to save.
+     * @param id             the id of the userProfileDTO to save.
      * @param userProfileDTO the userProfileDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated userProfileDTO,
-     * or with status {@code 400 (Bad Request)} if the userProfileDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the userProfileDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated userProfileDTO,
+     *         or with status {@code 400 (Bad Request)} if the userProfileDTO is not
+     *         valid,
+     *         or with status {@code 500 (Internal Server Error)} if the
+     *         userProfileDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{id}")
@@ -111,14 +116,19 @@ public class UserProfileResource {
     }
 
     /**
-     * {@code PATCH  /user-profiles/:id} : Partial updates given fields of an existing userProfile, field will ignore if it is null
+     * {@code PATCH  /user-profiles/:id} : Partial updates given fields of an
+     * existing userProfile, field will ignore if it is null
      *
-     * @param id the id of the userProfileDTO to save.
+     * @param id             the id of the userProfileDTO to save.
      * @param userProfileDTO the userProfileDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated userProfileDTO,
-     * or with status {@code 400 (Bad Request)} if the userProfileDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the userProfileDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the userProfileDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated userProfileDTO,
+     *         or with status {@code 400 (Bad Request)} if the userProfileDTO is not
+     *         valid,
+     *         or with status {@code 404 (Not Found)} if the userProfileDTO is not
+     *         found,
+     *         or with status {@code 500 (Internal Server Error)} if the
+     *         userProfileDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -151,7 +161,8 @@ public class UserProfileResource {
      *
      * @param pageable the pagination information.
      * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of userProfiles in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of userProfiles in body.
      */
     @GetMapping("")
     public ResponseEntity<List<UserProfileDTO>> getAllUserProfiles(
@@ -169,7 +180,8 @@ public class UserProfileResource {
      * {@code GET  /user-profiles/count} : count all the userProfiles.
      *
      * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count
+     *         in body.
      */
     @GetMapping("/count")
     public ResponseEntity<Long> countUserProfiles(UserProfileCriteria criteria) {
@@ -181,12 +193,27 @@ public class UserProfileResource {
      * {@code GET  /user-profiles/:id} : get the "id" userProfile.
      *
      * @param id the id of the userProfileDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the userProfileDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the userProfileDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{id}")
     public ResponseEntity<UserProfileDTO> getUserProfile(@PathVariable Long id) {
         log.debug("REST request to get UserProfile : {}", id);
         Optional<UserProfileDTO> userProfileDTO = userProfileService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(userProfileDTO);
+    }
+
+    /**
+     * {@code GET  /user-profiles/by-user/:userId} : get the userProfile by user ID.
+     *
+     * @param userId the user ID to search for
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the userProfileDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/by-user/{userId}")
+    public ResponseEntity<UserProfileDTO> getUserProfileByUserId(@PathVariable String userId) {
+        log.debug("REST request to get UserProfile by user ID : {}", userId);
+        Optional<UserProfileDTO> userProfileDTO = userProfileService.findByUserId(userId);
         return ResponseUtil.wrapOrNotFound(userProfileDTO);
     }
 

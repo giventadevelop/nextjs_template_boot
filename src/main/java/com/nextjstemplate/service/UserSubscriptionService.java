@@ -1,12 +1,14 @@
 package com.nextjstemplate.service;
 
 import com.nextjstemplate.service.dto.UserSubscriptionDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 /**
- * Service Interface for managing {@link com.nextjstemplate.domain.UserSubscription}.
+ * Service Interface for managing
+ * {@link com.nextjstemplate.domain.UserSubscription}.
  */
 public interface UserSubscriptionService {
     /**
@@ -55,4 +57,12 @@ public interface UserSubscriptionService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * Get all userSubscriptions for a specific userProfile.
+     *
+     * @param userProfileId the id of the userProfile.
+     * @return the list of entities.
+     */
+    List<UserSubscriptionDTO> findByUserProfileId(Long userProfileId);
 }

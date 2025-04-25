@@ -5,6 +5,7 @@ import com.nextjstemplate.repository.UserSubscriptionRepository;
 import com.nextjstemplate.service.UserSubscriptionService;
 import com.nextjstemplate.service.dto.UserSubscriptionDTO;
 import com.nextjstemplate.service.mapper.UserSubscriptionMapper;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service Implementation for managing {@link com.nextjstemplate.domain.UserSubscription}.
+ * Service Implementation for managing
+ * {@link com.nextjstemplate.domain.UserSubscription}.
  */
 @Service
 @Transactional
@@ -83,5 +85,16 @@ public class UserSubscriptionServiceImpl implements UserSubscriptionService {
     public void delete(Long id) {
         log.debug("Request to delete UserSubscription : {}", id);
         userSubscriptionRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<UserSubscriptionDTO> findByUserProfileId(Long userProfileId) {
+        log.debug("Request to get all UserSubscriptions for userProfile : {}", userProfileId);
+        return userSubscriptionRepository
+            .findByUserProfileId(userProfileId)
+            .stream()
+            .map(userSubscriptionMapper::toDto)
+            .collect(java.util.stream.Collectors.toList());
     }
 }

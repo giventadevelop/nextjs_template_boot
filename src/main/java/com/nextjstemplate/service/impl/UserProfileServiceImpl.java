@@ -18,7 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service Implementation for managing {@link com.nextjstemplate.domain.UserProfile}.
+ * Service Implementation for managing
+ * {@link com.nextjstemplate.domain.UserProfile}.
  */
 @Service
 @Transactional
@@ -74,8 +75,9 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     /**
-     *  Get all the userProfiles where UserSubscription is {@code null}.
-     *  @return the list of entities.
+     * Get all the userProfiles where UserSubscription is {@code null}.
+     *
+     * @return the list of entities.
      */
     @Transactional(readOnly = true)
     public List<UserProfileDTO> findAllWhereUserSubscriptionIsNull() {
@@ -98,5 +100,12 @@ public class UserProfileServiceImpl implements UserProfileService {
     public void delete(Long id) {
         log.debug("Request to delete UserProfile : {}", id);
         userProfileRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<UserProfileDTO> findByUserId(String userId) {
+        log.debug("Request to get UserProfile by user ID : {}", userId);
+        return userProfileRepository.findByUserId(userId).map(userProfileMapper::toDto);
     }
 }

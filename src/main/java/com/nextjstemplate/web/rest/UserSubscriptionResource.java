@@ -27,7 +27,8 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link com.nextjstemplate.domain.UserSubscription}.
+ * REST controller for managing
+ * {@link com.nextjstemplate.domain.UserSubscription}.
  */
 @RestController
 @RequestMapping("/api/user-subscriptions")
@@ -60,7 +61,9 @@ public class UserSubscriptionResource {
      * {@code POST  /user-subscriptions} : Create a new userSubscription.
      *
      * @param userSubscriptionDTO the userSubscriptionDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new userSubscriptionDTO, or with status {@code 400 (Bad Request)} if the userSubscription has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new userSubscriptionDTO, or with status
+     *         {@code 400 (Bad Request)} if the userSubscription has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("")
@@ -80,11 +83,14 @@ public class UserSubscriptionResource {
     /**
      * {@code PUT  /user-subscriptions/:id} : Updates an existing userSubscription.
      *
-     * @param id the id of the userSubscriptionDTO to save.
+     * @param id                  the id of the userSubscriptionDTO to save.
      * @param userSubscriptionDTO the userSubscriptionDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated userSubscriptionDTO,
-     * or with status {@code 400 (Bad Request)} if the userSubscriptionDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the userSubscriptionDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated userSubscriptionDTO,
+     *         or with status {@code 400 (Bad Request)} if the userSubscriptionDTO
+     *         is not valid,
+     *         or with status {@code 500 (Internal Server Error)} if the
+     *         userSubscriptionDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{id}")
@@ -112,14 +118,19 @@ public class UserSubscriptionResource {
     }
 
     /**
-     * {@code PATCH  /user-subscriptions/:id} : Partial updates given fields of an existing userSubscription, field will ignore if it is null
+     * {@code PATCH  /user-subscriptions/:id} : Partial updates given fields of an
+     * existing userSubscription, field will ignore if it is null
      *
-     * @param id the id of the userSubscriptionDTO to save.
+     * @param id                  the id of the userSubscriptionDTO to save.
      * @param userSubscriptionDTO the userSubscriptionDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated userSubscriptionDTO,
-     * or with status {@code 400 (Bad Request)} if the userSubscriptionDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the userSubscriptionDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the userSubscriptionDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated userSubscriptionDTO,
+     *         or with status {@code 400 (Bad Request)} if the userSubscriptionDTO
+     *         is not valid,
+     *         or with status {@code 404 (Not Found)} if the userSubscriptionDTO is
+     *         not found,
+     *         or with status {@code 500 (Internal Server Error)} if the
+     *         userSubscriptionDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -152,7 +163,8 @@ public class UserSubscriptionResource {
      *
      * @param pageable the pagination information.
      * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of userSubscriptions in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of userSubscriptions in body.
      */
     @GetMapping("")
     public ResponseEntity<List<UserSubscriptionDTO>> getAllUserSubscriptions(
@@ -170,7 +182,8 @@ public class UserSubscriptionResource {
      * {@code GET  /user-subscriptions/count} : count all the userSubscriptions.
      *
      * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count
+     *         in body.
      */
     @GetMapping("/count")
     public ResponseEntity<Long> countUserSubscriptions(UserSubscriptionCriteria criteria) {
@@ -182,13 +195,29 @@ public class UserSubscriptionResource {
      * {@code GET  /user-subscriptions/:id} : get the "id" userSubscription.
      *
      * @param id the id of the userSubscriptionDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the userSubscriptionDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the userSubscriptionDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{id}")
     public ResponseEntity<UserSubscriptionDTO> getUserSubscription(@PathVariable Long id) {
         log.debug("REST request to get UserSubscription : {}", id);
         Optional<UserSubscriptionDTO> userSubscriptionDTO = userSubscriptionService.findOne(id);
         return ResponseUtil.wrapOrNotFound(userSubscriptionDTO);
+    }
+
+    /**
+     * {@code GET  /user-subscriptions/by-profile/:userProfileId} : get
+     * userSubscriptions by userProfile ID.
+     *
+     * @param userProfileId the ID of the userProfile to find subscriptions for.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the list of userSubscriptionDTOs.
+     */
+    @GetMapping("/by-profile/{userProfileId}")
+    public ResponseEntity<List<UserSubscriptionDTO>> getUserSubscriptionsByUserProfile(@PathVariable Long userProfileId) {
+        log.debug("REST request to get UserSubscriptions by userProfile ID : {}", userProfileId);
+        List<UserSubscriptionDTO> subscriptions = userSubscriptionService.findByUserProfileId(userProfileId);
+        return ResponseEntity.ok().body(subscriptions);
     }
 
     /**
