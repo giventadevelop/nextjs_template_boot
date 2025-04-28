@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to NextJS Template Boot</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+          sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #f5f5f5;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        text-align: center;
+      }
+      h1 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+      }
+      .subtitle {
+        font-size: 1.25rem;
+        color: #7f8c8d;
+        margin-bottom: 2rem;
+      }
+      .card {
+        background: white;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+      .endpoints {
+        text-align: left;
+        margin-top: 1.5rem;
+      }
+      .endpoints h2 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+      }
+      .endpoints ul {
+        list-style: none;
+      }
+      .endpoints li {
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        background: #f8f9fa;
+        border-radius: 4px;
+      }
+      .endpoints code {
+        background: #e9ecef;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace;
+      }
+      .footer {
+        margin-top: 2rem;
+        color: #7f8c8d;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Welcome to NextJS Template Boot</h1>
+        <p class="subtitle">A Spring Boot & Next.js Application Template</p>
+
+        <div class="endpoints">
+          <h2>Available API Endpoints:</h2>
+          <ul>
+            <li><code>GET /api/user-profiles</code> - List all user profiles</li>
+            <li><code>GET /api/user-profiles/{id}</code> - Get user profile by ID</li>
+            <li><code>GET /api/user-profiles/by-user/{userId}</code> - Get user profile by user ID</li>
+            <li><code>POST /api/user-profiles</code> - Create a new user profile</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>© 2024 NextJS Template Boot. All rights reserved.</p>
+        <p>Powered by Spring Boot & Next.js</p>
+      </div>
+    </div>
+  </body>
+</html>
