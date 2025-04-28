@@ -33,13 +33,30 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://db.yhvhlvrsdqpyfebcfnfx.supabase.co:5432/postgres?sslmode=require
-    username: postgres
-    password: 25HasOWdiwJHoVaT
+    url: jdbc:h2:mem:nextjstemplate;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
     hikari:
       poolName: Hikari
       auto-commit: false
-  # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
+      maximum-pool-size: 10
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      hibernate.jdbc.batch_size: 25
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
   liquibase:
     contexts: prod
   thymeleaf:
@@ -47,7 +64,7 @@ spring:
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:
-# keytool -genkey -alias nextjs_template_boot -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+# keytool -genkey -alias nextjstemplate -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 #
 # You can also use Let's Encrypt:
 # See details in topic "Create a Java Keystore (.JKS) from Let's Encrypt Certificates" on https://maximilian-boehm.com/en-gb/blog
@@ -91,10 +108,9 @@ jhipster:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
         # As this is the PRODUCTION configuration, you MUST change the default key, and store it securely:
-        # - In the Consul configserver
-        # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
-        # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: ZjYxNDM3YjkzNzIwNWQ3YTI5ZDU2MWI1NjAzYTQ3M2U4YTk4NGM4MmNkZGExZWQ3MmE3NTkyNzJjODNjYTg1YmMyYmNiNzdhZWQ3MTU0ZGIyZGRkMDgxMDE3ZWM5ZWM0ZjViNzVhNmNiM2I0OTJhZGU3ZmY1NWRlZWVjMTM4MjY=
+        # - In the Heroku deployment, you can add it to the application configuration variables.
+        # - In your application, you can add it to the application properties file.
+        base64-secret: OTBjY2UxOWE1NjI4YWU4ZmJkZjliNzYwOTBiM2Y3MmJkMzRlZGVhNTE0MDFjNWZkZTM4MDk4MzkxZmEzMDg3NzEzMTk3YjZiYTVhNTAzZmE0NjQ5ODFjMjcyYTIxOTZiMGQ4ZDE5ODIwMTI1Yzk2YjMzNmY4ZDdkM2U4Mzk0MWU=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
