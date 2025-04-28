@@ -10,6 +10,14 @@
     <property name="uuidType" value="uuid" dbms="postgresql"/>
     <property name="datetimeType" value="datetime" dbms="postgresql"/>
 
+    <!-- H2 properties -->
+    <property name="now" value="CURRENT_TIMESTAMP" dbms="h2"/>
+    <property name="floatType" value="float" dbms="h2"/>
+    <property name="clobType" value="clob" dbms="h2"/>
+    <property name="blobType" value="blob" dbms="h2"/>
+    <property name="uuidType" value="uuid" dbms="h2"/>
+    <property name="datetimeType" value="timestamp" dbms="h2"/>
+
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20250422195856_added_entity_UserProfile.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20250422195956_added_entity_UserSubscription.xml" relativeToChangelogFile="false"/>
