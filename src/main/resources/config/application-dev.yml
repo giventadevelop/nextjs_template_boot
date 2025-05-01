@@ -32,13 +32,17 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://db.yhvhlvrsdqpyfebcfnfx.supabase.co:5432/postgres?sslmode=require
-    username: postgres
-    password: 25HasOWdiwJHoVaT
+    url: jdbc:postgresql://localhost:5432/nextjs_template_boot
+    username: nextjs_template_boot
+    password:
     hikari:
       poolName: Hikari
       auto-commit: false
-      maximum-pool-size: 10
+      maximum-pool-size: 5
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
